@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if feilmelding  %}
+    <div>
+        {{feilmelding: "Brukeren eksisterer allerede/Alle felt må være fylt inn "}}
+    </div>
+    {% elif ok %}
+    <div>
+        {{Ok: "Brukeren har blitt lagt til"}}
+    </div>
+    {% endif %}
+    <h3>Legg til Bruker</h3>
+    <form action="{{ url_for("users") }}" method="POST">
+        <label for="name">Brukernavn: </label><br/>
+        <input type="text" name="username" id="username" size="30"/><br/>
+        <label for="email">Email: </label><br/>
+        <input type="email" name="email" id="email" size="30"/><br/>
+        <label for="password">Passord: </label><br/>
+        <input type="password" name="password" id="password" size="30"/><br/>
+        <input style="margin-top: 2mm" type="submit" value="Legg til bruker">
+    </form>
+    <br/>
+
+    <h3>Alle Brukere</h3>
+    <ol>
+        {% for user in users %}
+            <li><b>{{ user.username }}</b></li>
+            <ul>
+                <li>{{ user.email }}</li>
+                <li>{{ user.password }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+{% endblock %}

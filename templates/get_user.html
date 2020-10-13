@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>Finn Bruker</h3>
+    {% if feilmelding  %}
+    <div>
+        {{feilmelding: "Brukeren eksisterer ikke!"}}
+    </div>
+    <form action="{{ url_for("get_user") }}" method="GET">
+        <label for="name">Brukernavn: </label><br/>
+        <input type="text" name="username" id="username" size="30"/><br/>
+        <input style="margin-top: 2mm" type="submit" value="Finn bruker">
+    </form>
+
+    <h3>Slett Bruker</h3>
+    {% if feilmelding2  %}
+    <div>
+        {{feilmelding2: "Brukeren eksisterer ikke!"}}
+    </div>
+    <form action="{{ url_for("get_user") }}" method="DELETE">
+        <label for="name">Brukernavn: </label><br/>
+        <input type="text" name="username" id="username" size="30"/><br/>
+        <input style="margin-top: 2mm" type="submit" value="Slett bruker">
+    </form>
+{% endblock %}
